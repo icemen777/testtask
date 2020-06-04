@@ -29,8 +29,8 @@ Route::get ("/cart", ['uses'=>'CartController@index', 'as'=>'YourCart']);
 
 Route::get ("/clear_cart", ['uses'=>'CartController@ClearCart', 'as'=>'ClearCart']);
 
-Route::post ("/cart/add", ['uses'=>'CartController@Add', 'as'=>'AddToCart']);
-Route::post ("/cart/del", ['uses'=>'CartController@Del', 'as'=>'DelInCart']);
+Route::post ("/cart/toggle/add", ['uses'=>'CartController@Add', 'as'=>'AddToCart']);
+Route::post ("/cart/toggle/del", ['uses'=>'CartController@Del', 'as'=>'DelInCart']);
 
 
 

@@ -12,7 +12,7 @@ $('form.add_cart_form').on('submit', (
         spinner.show();
         var formData1 = $(this).children('input[name="id"]').val();
         $.ajax({
-            url: '/cart/add',
+            url: '/cart/toggle/add',
             method: 'post',
             data: { id: formData1 },
             success: function (data) {
@@ -29,7 +29,7 @@ $('form.del_cart_form').on('submit', (
         spinner.show();
         var formData1 = $(this).children('input[name="id"]').val();
         $.ajax({
-            url: '/cart/del',
+            url: '/cart/toggle/add',
             method: 'post',
             data: { id: formData1 },
             success: function (data) {
