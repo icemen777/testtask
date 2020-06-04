@@ -37,4 +37,4 @@ Route::post ("/cart/toggle/del", ['uses'=>'CartController@Del', 'as'=>'DelInCart
 
 
 //На всякий случай, чтобы меню в шапке не пустовало)
-Route::get ('/contacts', ['uses'=>'ProductsController@index', 'as'=>'contact']);
+Route::get ('/contacts', ['uses'=>'ProductsController@home', 'as'=>'contact']);
