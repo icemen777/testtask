@@ -29,7 +29,7 @@ $('form.del_cart_form').on('submit', (
         spinner.show();
         var formData1 = $(this).children('input[name="id"]').val();
         $.ajax({
-            url: '/cart/toggle/add',
+            url: '/cart/toggle/del',
             method: 'post',
             data: { id: formData1 },
             success: function (data) {
