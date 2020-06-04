@@ -25,7 +25,7 @@ Route::get ("/products", ['uses'=>'ProductsController@sorter', 'as'=>'products']
 
 
 
-Route::get ("/cart", ['uses'=>'CartController@index', 'as'=>'YourCart']);
+Route::get ("/cart", ['uses'=>'CartController@home', 'as'=>'YourCart']);
 
 Route::get ("/clear_cart", ['uses'=>'CartController@ClearCart', 'as'=>'ClearCart']);
 
