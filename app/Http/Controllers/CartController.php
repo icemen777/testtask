@@ -16,7 +16,6 @@ class CartController extends Controller
     }
 
 
-
     public function ClearCart(Request $request) {
         $cart = (new Cart())->clearCart();
         return redirect(route('home'));
