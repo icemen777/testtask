@@ -15,33 +15,7 @@ class CartController extends Controller
         return view('cart.index', ['models' => $cart]);
     }
 
-    public function Buy(Request $request) {
-        $cart = new Cart();
-        if($request->ajax()){
-            if (!isset($request['count'])) {
-                $request['count'] = 1;
-            }
 
-            $model = $cart->addToCart($request['id'], $request['count']);
-
-            return response(view("widgets.cart", ['model' => $model])->render());
-        }
-        else {
-
-            if (!isset($request['id'])) {
-                return redirect(route('cart/index'));
-            }
-            if (!isset($request['count'])) {
-                $request['count'] = 1;
-            }
-
-            // добавляем товар в корзину и перенаправляем покупателя
-            // на страницу корзины
-            $cart->addToCart($request['id'], $request['count']);
-
-            return redirect(route('cart/index'));
-        }
-    }
 
     public function ClearCart(Request $request) {
         $cart = (new Cart())->clearCart();
