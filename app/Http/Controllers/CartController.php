@@ -4,25 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Cart;
-use App\Product;
+use App\Models\Cart;
+
 
 class CartController extends Controller
 {
     //
-    public function Index() {
-        $cart = (new Cart())->getCart();
+    public function index() {
+        $cart = new Cart();
         return view('cart.index', ['models' => $cart]);
     }
 
 
-    public function ClearCart(Request $request) {
+    public function clearCart(Request $request) {
         $cart = (new Cart())->clearCart();
         return redirect(route('home'));
 
     }
 
-    public function Add(Request $request) {
+    public function add(Request $request) {
 
     $cart = new Cart();
     if($request->ajax()){
@@ -35,7 +35,7 @@ class CartController extends Controller
     }
 }
 
-    public function Del(Request $request) {
+    public function del(Request $request) {
 
         $cart = new Cart();
         if($request->ajax()){
