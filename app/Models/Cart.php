@@ -7,41 +7,41 @@ use App\Services\CartService;
 
 /**
  * App\Cart
-
  */
 class Cart
 {
-    private $realcart; /* in magic methods __set __get used $carts */
+    private $realcart; /* in magic methods __set __get used $carts -  Использованы магинческие методы */
 
     public function __construct()
     {
         $this->realcart = CartService::getCart();
     }
 
-    public function clearCart() {
+    public function clearCart()
+    {
         $this->realcart = null;
         CartService::clearCart();
     }
 
-    public function addToCart($id, $count = 1) {
+    public function addToCart($id, $count = 1)
+    {
         $count = (int)$count;
         $id = abs((int)$id);
-        $product = Product::find($id);
-        if (empty($product)) { return; }
 
-        /*if (!session()->has('cart')) {
-            session()->put('cart', []);
-            $cart = [];
-        } else {
-            $cart = session()->get('cart');
-        }*/
+        $product = Product::find($id);
+        if (empty($product)) {
+            return;
+        }
+
         $cart = $this->realcart;
 
-        if ((isset($cart['products'][$product->id])) && ($cart['products'][$product->id]['count']>0)) { // такой товар
+        if ((isset($cart['products'][$product->id])) && ($cart['products'][$product->id]['count'] > 0)) { // такой товар
             // уже
             // есть?
             $count = $cart['products'][$product->id]['count'] + $count;
-            if ($count > 100) { $count = 100; }
+            if ($count > 100) {
+                $count = 100;
+            }
             $cart['products'][$product->id]['count'] = $count;
         } else { // такого товара еще нет
             if ($count == 1) {
@@ -59,15 +59,17 @@ class Cart
         return $cart;
     }
 
-    public function __get($var) {
+    public function __get($var)
+    {
         if ($var == 'carts') {
             if ($this->realcart == null) $this->realcart = CartService::getCart();
             return $this->realcart;
         }
-        abort('404', 'Unknown variable name.');
+        abort('404', 'This is Unknown variable name.');
     }
 
-    public function __set($var, $value) {
+    public function __set($var, $value)
+    {
         if ($var == 'carts') {
             $this->realcart = $value;
             CartService::saveCart($value);
